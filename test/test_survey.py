@@ -1,5 +1,7 @@
 import unittest
-from test.survey import AnonymousSurvey
+
+from alien import AnonymousSurvey
+
 
 class TestAnonymousSurvey(unittest.TestCase):
     """针对 AnonymousSurvey 类的测试"""

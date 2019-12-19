@@ -1,6 +1,6 @@
 import unittest
 
-from test.name_function import get_formatted_name
+from alien import get_formatted_name
 
 
 class NamesTestCase(unittest.TestCase):

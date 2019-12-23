@@ -2,17 +2,18 @@ import sys
 import pygame
 from alien.bullet import Bullet
 
-def check_events(settings,screen,ship,bullets):
+def check_events(settings, screen, ship, bullets):
     """响应按键和鼠标事件"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            check_key_down_event(event,settings,screen, ship,bullets)
+            check_key_down_event(event, settings, screen, ship, bullets)
         elif event.type == pygame.KEYUP:
             check_key_up_event(event, ship)
 
-def check_key_down_event(event,settings,screen, ship,bullets):
+
+def check_key_down_event(event, settings, screen, ship, bullets):
     """按键按下"""
     if event.key == pygame.K_RIGHT:
         # 飞船向右移动
@@ -21,6 +22,8 @@ def check_key_down_event(event,settings,screen, ship,bullets):
         ship.moving_left = True
     elif event.key == pygame.K_SPACE:
         fire_bullet(settings, screen, ship, bullets)
+    elif event.key == pygame.K_p:
+        sys.exit()
 
 
 def fire_bullet(settings, screen, ship, bullets):
@@ -39,7 +42,7 @@ def check_key_up_event(event, ship):
         ship.moving_left = False
 
 
-def update_screen(settings, screen, ship,bullets):
+def update_screen(settings, screen, ship, aliens, bullets):
     """更新屏幕上的图像，并切换到新屏幕"""
     # 每次循环时都重绘屏幕
     screen.fill(settings.bg_color)
@@ -49,6 +52,8 @@ def update_screen(settings, screen, ship,bullets):
         bullet.draw_bullet()
 
     ship.blitme()
+    aliens.draw(screen)
+
 
     # 让最近绘制的屏幕可见
     pygame.display.flip()
